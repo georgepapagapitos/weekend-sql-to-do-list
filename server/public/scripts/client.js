@@ -15,11 +15,12 @@ function getTodoList() {
       console.log('GET response', response);
       for (item of response) {
         $('#todo-list').append(`
-          <li>
-            ${item.todo}
-            <button>Complete</button>
-            <button>Delete</button>
-          </li>
+          <tr>
+            <td>${item.todo}</td>
+            <td>${item.isComplete}</td>
+            <td><button>Mark Complete</button></td>
+            <td><button>Delete</button></td>
+          </tr>
         `);
       }
     })

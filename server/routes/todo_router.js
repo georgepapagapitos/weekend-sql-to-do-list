@@ -16,8 +16,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  let sqlText = ` INSERT INTO "todos" ("todo", "isComplete") VALUES($1, $2) `;
-  let sqlArgs = [req.body.todo, req.body.isComplete];
+  let sqlText = ` INSERT INTO "todos" ("todo") VALUES($1) `;
+  let sqlArgs = [req.body.todo];
 
   pool
     .query(sqlText, sqlArgs)
@@ -30,6 +30,7 @@ router.post('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+  console.log(req.params);
   let todoId = req.params.id;
   console.log('PUT todoId', todoId);
   let sqlText = `UPDATE "todos" SET "isComplete"=true WHERE "id"=$1`;

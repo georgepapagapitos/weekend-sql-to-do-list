@@ -3,7 +3,7 @@ $(onReady);
 function onReady() {
   getTodoList();
   $('#btn-add').on('click', postTodo);
-  $('#todo-list').on('click', '.btn-complete', onComplete);
+  $('#todo-list').on('click', '.todo-item', onComplete);
   $('#todo-list').on('click', '.btn-delete', onDelete);
 }
 
@@ -16,15 +16,10 @@ function getTodoList() {
     .then(function (response) {
       console.log('GET response', response);
       for (item of response) {
-        if (item.isComplete != true) {
-          item.isComplete = false;
-        }
         $('#todo-list').append(`
-          <tr class="todo-row">
-            <td>${item.todo}</td>
-            <td>${item.isComplete}</td>
-            <td><button class="btn-complete" data-id="${item.id}">Mark Complete</button></td>
-            <td><button class="btn-delete" data-id="${item.id}">Delete</button></td>
+          <tr>
+            <td class="todo-item" data-id="${item.id}">${item.todo}</td>
+            <td><button class="btn-delete" data-delete="${item.id}">Delete</button></td>
           </tr>
         `);
       }
@@ -48,7 +43,9 @@ function postTodo() {
 }
 
 function onComplete() {
-  completeTodo($(this).data('id'));
+  let todoItem = $(this).data('id');
+  $(this).addClass('complete');
+  completeTodo(todoItem);
 }
 
 function completeTodo(todoId) {
@@ -68,7 +65,7 @@ function completeTodo(todoId) {
 }
 
 function onDelete() {
-  deleteTodo($(this).data('id'));
+  deleteTodo($(this).data('delete'));
 }
 
 function deleteTodo(todoId) {

@@ -20,7 +20,7 @@ function getTodoList() {
           item.isComplete = false;
         }
         $('#todo-list').append(`
-          <tr>
+          <tr class="todo-row">
             <td>${item.todo}</td>
             <td>${item.isComplete}</td>
             <td><button class="btn-complete" data-id="${item.id}">Mark Complete</button></td>

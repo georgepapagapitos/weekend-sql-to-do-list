@@ -19,7 +19,7 @@ function getTodoList() {
         $('#todo-list').append(`
           <tr>
             <td class="todo-item" data-id="${item.id}">${item.todo}</td>
-            <td><button class="btn-delete" data-delete="${item.id}">Delete</button></td>
+            <td><button class="btn-delete" data-id="${item.id}">Delete</button></td>
           </tr>
         `);
       }
@@ -29,7 +29,8 @@ function getTodoList() {
     });
 }
 
-function postTodo() {
+function postTodo(event) {
+  event.preventDefault();
   $.ajax({
     method: 'POST',
     url: '/todoList',
@@ -44,7 +45,7 @@ function postTodo() {
 
 function onComplete() {
   let todoItem = $(this).data('id');
-  $(this).addClass('complete');
+  $(this).toggleClass('complete');
   completeTodo(todoItem);
 }
 
@@ -65,7 +66,8 @@ function completeTodo(todoId) {
 }
 
 function onDelete() {
-  deleteTodo($(this).data('delete'));
+  console.log($(this));
+  deleteTodo($(this).data('id'));
 }
 
 function deleteTodo(todoId) {

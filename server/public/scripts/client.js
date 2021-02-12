@@ -4,6 +4,7 @@ function onReady() {
   getTodoList();
   $('#btn-add').on('click', postTodo);
   $('#todo-list').on('click', '.btn-complete', onComplete);
+  $('#todo-list').on('click', '.btn-delete', onDelete);
 }
 
 function getTodoList() {
@@ -46,6 +47,10 @@ function postTodo() {
   });
 }
 
+function onComplete() {
+  completeTodo($(this).data('id'));
+}
+
 function completeTodo(todoId) {
   $.ajax({
     method: 'PUT',
@@ -62,6 +67,20 @@ function completeTodo(todoId) {
     });
 }
 
-function onComplete() {
-  completeTodo($(this).data('id'));
+function onDelete() {
+  deleteTodo($(this).data('id'));
+}
+
+function deleteTodo(todoId) {
+  console.log('todoId', todoId);
+  $.ajax({
+    method: 'DELETE',
+    url: `/todoList/${todoId}`,
+  })
+    .then(function (response) {
+      getTodoList();
+    })
+    .catch(function (error) {
+      console.log('DELETE error', error);
+    });
 }

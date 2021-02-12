@@ -45,10 +45,9 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
+  console.log('req.params', req.params);
   let todoId = req.params.id;
-  console.log('DELETE todoId', todoId);
-
   let sqlText = ` DELETE FROM "todos" WHERE "id"=$1 `;
 
   pool

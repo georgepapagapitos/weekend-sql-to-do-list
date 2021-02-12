@@ -4,7 +4,7 @@ const pool = require('../modules/pool');
 
 router.get('/', (req, res) => {
   pool
-    .query(` SELECT * FROM "todos" `)
+    .query(` SELECT * FROM "todos" ORDER BY "id"`)
     .then(function (dbRes) {
       console.log('dbRes.rows', dbRes.rows);
       res.send(dbRes.rows);

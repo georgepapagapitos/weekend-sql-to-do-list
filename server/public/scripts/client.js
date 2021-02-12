@@ -3,6 +3,7 @@ $(onReady);
 function onReady() {
   getTodoList();
   $('#btn-add').on('click', postTodo);
+  $('#todo-list').on('click', '.btn-complete', onComplete);
 }
 
 function getTodoList() {
@@ -21,8 +22,8 @@ function getTodoList() {
           <tr>
             <td>${item.todo}</td>
             <td>${item.isComplete}</td>
-            <td><button>Mark Complete</button></td>
-            <td><button>Delete</button></td>
+            <td><button class="btn-complete" data-id="${item.id}">Mark Complete</button></td>
+            <td><button class="btn-delete" data-id="${item.id}">Delete</button></td>
           </tr>
         `);
       }
@@ -43,4 +44,24 @@ function postTodo() {
     $('#todo-in').val('');
     getTodoList();
   });
+}
+
+function completeTodo(todoId) {
+  $.ajax({
+    method: 'PUT',
+    url: `/todoList/${todoId}`,
+    data: {
+      todoId,
+    },
+  })
+    .then(function (response) {
+      getTodoList();
+    })
+    .catch(function (error) {
+      console.log('PUT error', error);
+    });
+}
+
+function onComplete() {
+  completeTodo($(this).data('id'));
 }

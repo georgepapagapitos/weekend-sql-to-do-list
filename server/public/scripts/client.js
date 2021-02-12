@@ -22,6 +22,9 @@ function getTodoList() {
             <td><button class="btn-delete" data-id="${item.id}">Delete</button></td>
           </tr>
         `);
+        if (item.isComplete != false) {
+          $('td').addClass('complete');
+        }
       }
     })
     .catch(function (error) {
@@ -45,7 +48,7 @@ function postTodo(event) {
 
 function onComplete() {
   let todoItem = $(this).data('id');
-  $(this).toggleClass('complete');
+  console.log('todoitem', todoItem);
   completeTodo(todoItem);
 }
 
@@ -58,6 +61,7 @@ function completeTodo(todoId) {
     },
   })
     .then(function (response) {
+      console.log('PUT response', response);
       getTodoList();
     })
     .catch(function (error) {

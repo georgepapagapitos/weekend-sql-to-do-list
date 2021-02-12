@@ -26,3 +26,7 @@ table {
 .complete {
   text-decoration: line-through;
 }
+
+.hidden {
+  visibility: hidden;
+}

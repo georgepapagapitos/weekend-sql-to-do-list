@@ -37,7 +37,7 @@ router.put('/:id', (req, res) => {
   pool
     .query(sqlText, [todoId])
     .then((dbRes) => {
-      console.log('PUT resDB', dbRes);
+      console.log('PUT dbRes', dbRes);
       res.sendStatus(200);
     })
     .catch((error) => {

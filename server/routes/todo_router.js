@@ -18,7 +18,6 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let sqlText = ` INSERT INTO "todos" ("todo", "isComplete") VALUES($1, $2) `;
   let sqlArgs = [req.body.todo, req.body.isComplete];
-  console.log('todo to add', todo);
 
   pool
     .query(sqlText, sqlArgs)

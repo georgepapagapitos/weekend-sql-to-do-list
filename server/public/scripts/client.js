@@ -14,6 +14,9 @@ function getTodoList() {
     .then(function (response) {
       console.log('GET response', response);
       for (item of response) {
+        if (item.isComplete != true) {
+          item.isComplete = false;
+        }
         $('#todo-list').append(`
           <tr>
             <td>${item.todo}</td>

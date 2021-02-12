@@ -29,4 +29,20 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:id', (req, res) => {
+  let todoId = req.params.id;
+  console.log('todoId', todoId);
+  let sqlText = `UPDATE "todos" SET "isComplete"=true WHERE "id"=$1`;
+  pool
+    .query(sqlText, [todoId])
+    .then((resDB) => {
+      console.log('PUT resDB', resDB);
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('PUT error', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

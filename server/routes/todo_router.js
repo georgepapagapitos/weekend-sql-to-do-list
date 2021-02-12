@@ -16,8 +16,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  let sqlText = ` INSERT INTO "todos" ("todo") VALUES ($1) `;
+  let sqlText = ` INSERT INTO "todos" ("todo") VALUES($1) `;
   let todo = req.body.todo;
+  console.log('todo to add', todo);
 
   pool
     .query(sqlText, [todo])

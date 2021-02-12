@@ -2,10 +2,11 @@ $(onReady);
 
 function onReady() {
   getTodoList();
-  // $('#btn-add').on('click', postTodo);
+  $('#btn-add').on('click', postTodo);
 }
 
 function getTodoList() {
+  $('#todo-list').empty();
   $.ajax({
     method: 'GET',
     url: '/todoList',
@@ -25,4 +26,17 @@ function getTodoList() {
     .catch(function (error) {
       console.log('GET error', error);
     });
+}
+
+function postTodo() {
+  $.ajax({
+    method: 'POST',
+    url: '/todoList',
+    data: {
+      todo: $('#todo-in').val(),
+    },
+  }).then(function (response) {
+    $('#todo-in').val('');
+    getTodoList();
+  });
 }

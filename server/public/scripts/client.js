@@ -36,6 +36,11 @@ function getTodoList() {
 
 function postTodo(event) {
   event.preventDefault();
+  if ($('#todo-in').val() === null || $('#todo-in').val() === '') {
+    console.log('Please enter valid input');
+    alert('Please enter a valid to-do item.');
+    return;
+  }
   $.ajax({
     method: 'POST',
     url: '/todoList',

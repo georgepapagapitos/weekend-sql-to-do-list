@@ -17,13 +17,12 @@ function getTodoList() {
       console.log('GET response', response);
       for (item of response) {
         $('#todo-list').append(`
-          <tr>
-            <td class="todo-item" data-id="${item.id}">${item.todo}</td>
-            <td><button class="btn-delete" data-id="${item.id}">Delete</button></td>
-          </tr>
+        <li class="todo-item" data-id="${item.id}">
+          ${item.todo}<button class="btn-delete" data-id="${item.id}">Delete</button>
+        </li>
         `);
         if (item.isComplete != false) {
-          $('td').addClass('complete');
+          $('li').addClass('complete');
         }
       }
     })
@@ -49,7 +48,11 @@ function postTodo(event) {
 function onComplete() {
   let todoItem = $(this).data('id');
   console.log('todoitem', todoItem);
-  completeTodo(todoItem);
+  if ($(this).hasClass('complete')) {
+    deleteTodo(todoItem);
+  } else {
+    completeTodo(todoItem);
+  }
 }
 
 function completeTodo(todoId) {

@@ -2,15 +2,6 @@ body {
   margin: 0;
 }
 
-th {
-  border: 1px solid black;
-  padding: 5px;
-}
-
-#todo-area {
-  padding: 2rem;
-}
-
 section {
   margin: 10px;
   text-align: center;
@@ -23,8 +14,12 @@ header {
   text-align: center;
 }
 
-table {
-  margin: auto;
+#todo-area {
+  padding: 2rem;
+}
+
+ul {
+  list-style: none;
 }
 
 .complete {

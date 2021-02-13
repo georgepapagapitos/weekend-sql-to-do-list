@@ -29,20 +29,34 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
-  console.log(req.params);
+router.put('/complete/:id', (req, res) => {
   let todoId = req.params.id;
-  console.log('PUT todoId', todoId);
+  console.log('PUT COMPLETE todoId', todoId);
   let sqlText = `UPDATE "todos" SET "isComplete"=true WHERE "id"=$1`;
   pool
     .query(sqlText, [todoId])
     .then((dbRes) => {
-      console.log('PUT dbRes', dbRes);
+      console.log('PUT COMPLETE dbRes', dbRes);
       res.sendStatus(200);
     })
     .catch((error) => {
       console.log('PUT error', error);
       res.sendStatus(500);
+    });
+});
+
+router.put('/redo/:id', (req, res) => {
+  let todoId = req.params.id;
+  console.log('PUT REDO id:', todoId);
+  let sqlText = ` UPDATE "todos" SET "isComplete"=false WHERE "id"=$1`;
+  pool
+    .query(sqlText, [todoId])
+    .then((dbRes) => {
+      console.log('PUT REDO dbRes', dbRes);
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('PUT REDO error', error);
     });
 });
 

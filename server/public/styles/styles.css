@@ -38,11 +38,19 @@ header {
   padding: 2rem;
 }
 
+.todo-item {
+  padding: 0.5rem;
+}
+
 ul {
   list-style: none;
   font-family: 'Karla', sans-serif;
 }
 
 .complete {
+  text-decoration: line-through;
+}
+
+input[type='checkbox']:checked + label.strikethrough {
   text-decoration: line-through;
 }

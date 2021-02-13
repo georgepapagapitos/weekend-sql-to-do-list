@@ -17,9 +17,9 @@ function getTodoList() {
       for (item of response) {
         $('#todo-area').append(`
        <div class="todo-item">
-        <input type="checkbox" name="checkbox" data-id="${item.id}" ${
-          item.isComplete ? 'checked' : ''
-        }>
+        <input type="checkbox" name="checkbox" id="${item.id}"data-id="${
+          item.id
+        }" ${item.isComplete ? 'checked' : ''}>
         <label class="strikethrough" for=${item.id}>${item.todo}</label>
        </div>
         `);

@@ -7,13 +7,17 @@ th {
   padding: 5px;
 }
 
+#todo-area {
+  padding: 2rem;
+}
+
 section {
   margin: 10px;
   text-align: center;
 }
 
 header {
-  background: peru;
+  background: skyblue;
   padding: 5px;
   margin: 0px;
   text-align: center;

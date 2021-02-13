@@ -25,7 +25,7 @@ function getTodoList() {
             <label class="strikethrough" for=${item.id}>${item.todo}</label>
             <button class="${
               item.isComplete ? '' : 'hidden'
-            }" id="delete" type="button" data-id="${item.id}">X</button>
+            }" id="delete" type="button" data-id="${item.id}">x</button>
           </div>
         `);
       }

@@ -76,18 +76,4 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-router.get('/isComplete/:id', (req, res) => {
-  let todoId = req.params.id;
-  let sqlText = ` SELECT "isComplete" FROM "todos" WHERE "id"=$1 `;
-
-  pool
-    .query(sqlText, [todoId])
-    .then((dbRes) => {
-      res.send(dbRes.rows[0].isComplete);
-    })
-    .catch((error) => {
-      console.log('GET iscomplete error', error);
-    });
-});
-
 module.exports = router;

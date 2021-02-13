@@ -9,9 +9,29 @@ section {
 
 header {
   background: skyblue;
-  padding: 5px;
+  padding: 10px;
   margin: 0px;
   text-align: center;
+}
+
+.title {
+  font-family: 'Bebas Neue', cursive;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 0.25rem;
+}
+.top {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.bottom {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+#input-area {
+  margin-top: 3rem;
 }
 
 #todo-area {
@@ -20,6 +40,7 @@ header {
 
 ul {
   list-style: none;
+  font-family: 'Karla', sans-serif;
 }
 
 .complete {

@@ -7,21 +7,25 @@ function onReady() {
 }
 
 function getTodoList() {
-  $('#todo-list').empty();
   $.ajax({
     method: 'GET',
     url: '/todoList',
   })
     .then(function (response) {
+      $('#todo-area').empty();
       console.log('GET response', response);
       for (item of response) {
         $('#todo-area').append(`
-       <div class="todo-item">
-        <input type="checkbox" name="checkbox" id="${item.id}"data-id="${
+          <div class="todo-item">
+            <input type="checkbox" name="checkbox" id="${item.id}"data-id="${
           item.id
-        }" ${item.isComplete ? 'checked' : ''}>
-        <label class="strikethrough" for=${item.id}>${item.todo}</label>
-       </div>
+        }" 
+            ${item.isComplete ? 'checked' : ''}>
+            <label class="strikethrough" for=${item.id}>${item.todo}</label>
+            <button class="${
+              item.isComplete ? '' : 'hidden'
+            } btn-delete" type="button" data-id="${item.id}">X</button>
+          </div>
         `);
       }
     })
@@ -40,7 +44,6 @@ function postTodo(event) {
     },
   }).then(function (response) {
     $('#todo-in').val('');
-    $('#todo-area').empty();
     getTodoList();
   });
 }
@@ -62,37 +65,37 @@ function completeTodo(todoId) {
     });
 }
 
-function redoTodo(todoId) {
-  console.log('redo todoId', todoId);
+function undoTodo(todoId) {
+  console.log('undo todoId', todoId);
   $.ajax({
     method: 'PUT',
-    url: `/todoList/redo/${todoId}`,
+    url: `/todoList/undo/${todoId}`,
     data: {
       todoId,
     },
   })
     .then(function (response) {
-      console.log('REDO');
+      console.log('UNDO');
     })
     .catch((error) => {
-      console.log('REDO ERROR', error);
+      console.log('UNDO ERROR', error);
     });
 }
 
-function deleteTodo(todoId) {
-  console.log('todoId', todoId);
-  $.ajax({
-    method: 'DELETE',
-    url: `/todoList/${todoId}`,
-  })
-    .then(function (response) {
-      console.log('delete complete');
-      getTodoList();
-    })
-    .catch(function (error) {
-      console.log('DELETE error', error);
-    });
-}
+// function deleteTodo(todoId) {
+//   console.log('todoId', todoId);
+//   $.ajax({
+//     method: 'DELETE',
+//     url: `/todoList/${todoId}`,
+//   })
+//     .then(function (response) {
+//       console.log('delete complete');
+//       getTodoList();
+//     })
+//     .catch(function (error) {
+//       console.log('DELETE error', error);
+//     });
+// }
 
 function onCheck() {
   let todoId = $(this).data('id');
@@ -100,6 +103,7 @@ function onCheck() {
   if ($(this).is(':checked')) {
     completeTodo(todoId);
   } else {
-    redoTodo(todoId);
+    undoTodo(todoId);
   }
+  getTodoList();
 }

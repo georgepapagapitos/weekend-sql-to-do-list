@@ -45,18 +45,18 @@ router.put('/complete/:id', (req, res) => {
     });
 });
 
-router.put('/redo/:id', (req, res) => {
+router.put('/undo/:id', (req, res) => {
   let todoId = req.params.id;
-  console.log('PUT REDO id:', todoId);
+  console.log('PUT UNDO id:', todoId);
   let sqlText = ` UPDATE "todos" SET "isComplete"=false WHERE "id"=$1`;
   pool
     .query(sqlText, [todoId])
     .then((dbRes) => {
-      console.log('PUT REDO dbRes', dbRes);
+      console.log('PUT UNDO dbRes', dbRes);
       res.sendStatus(200);
     })
     .catch((error) => {
-      console.log('PUT REDO error', error);
+      console.log('PUT UNDO error', error);
     });
 });
 

@@ -21,17 +21,15 @@
     </header>
     <div class="container">
       <div class="input-container">
-        <section id="input-area">
-          <form>
-            <input
-              type="text"
-              id="todo-in"
-              autocomplete="off"
-              placeholder="To-do..."
-            />
-            <button type="button" id="btn-add">+</button>
-          </form>
-        </section>
+        <form id="input-area">
+          <input
+            type="text"
+            id="todo-in"
+            autocomplete="off"
+            placeholder="Add your to-do..."
+          />
+          <input type="submit" value="+" class="btn" id="add" />
+        </form>
         <section id="todo-area">
           <!-- jQuery will append data here -->
         </section>

@@ -25,7 +25,3 @@ ul {
 .complete {
   text-decoration: line-through;
 }
-
-.hidden {
-  visibility: hidden;
-}

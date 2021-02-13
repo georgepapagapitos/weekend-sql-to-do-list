@@ -3,8 +3,7 @@ $(onReady);
 function onReady() {
   getTodoList();
   $('#btn-add').on('click', postTodo);
-  $('#todo-list').on('click', '.todo-item', onComplete);
-  $('#todo-list').on('click', '.btn-delete', onDelete);
+  $('#todo-list').on('click', '.todo-item', isComplete);
 }
 
 function getTodoList() {
@@ -17,13 +16,12 @@ function getTodoList() {
       console.log('GET response', response);
       for (item of response) {
         $('#todo-list').append(`
-        <li class="todo-item" data-id="${item.id}">
-          ${item.todo}<button class="btn-delete" data-id="${item.id}">Delete</button>
+        <li class="todo-item ${
+          item.isComplete != false ? 'complete' : ''
+        }" data-id="${item.id}">
+          ${item.todo}
         </li>
         `);
-        if (item.isComplete != false) {
-          $('li').addClass('complete');
-        }
       }
     })
     .catch(function (error) {
@@ -45,16 +43,6 @@ function postTodo(event) {
   });
 }
 
-function onComplete() {
-  let todoItem = $(this).data('id');
-  console.log('todoitem', todoItem);
-  if ($(this).hasClass('complete')) {
-    deleteTodo(todoItem);
-  } else {
-    completeTodo(todoItem);
-  }
-}
-
 function completeTodo(todoId) {
   $.ajax({
     method: 'PUT',
@@ -72,11 +60,6 @@ function completeTodo(todoId) {
     });
 }
 
-function onDelete() {
-  console.log($(this));
-  deleteTodo($(this).data('id'));
-}
-
 function deleteTodo(todoId) {
   console.log('todoId', todoId);
   $.ajax({
@@ -88,5 +71,24 @@ function deleteTodo(todoId) {
     })
     .catch(function (error) {
       console.log('DELETE error', error);
+    });
+}
+
+function isComplete() {
+  let todoId = $(this).data('id');
+  $.ajax({
+    method: 'GET',
+    url: `/todoList/isComplete/${todoId}`,
+  })
+    .then(function (response) {
+      console.log('iscomplete response', response);
+      if (response) {
+        deleteTodo(todoId);
+      } else {
+        completeTodo(todoId);
+      }
+    })
+    .catch(function (error) {
+      console.log('is complete error', error);
     });
 }

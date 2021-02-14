@@ -8,28 +8,28 @@
     <script src="/vendors/jquery.js"></script>
     <script src="/scripts/client.js"></script>
     <link rel="stylesheet" href="/styles/styles.css" />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <header>
-      <h1 class="title top">Weekend</h1>
-      <h2 class="title bottom">To-Do List</h2>
+      <h1 class="title">Weekend To-Do List</h1>
     </header>
-    <main>
-      <section id="input-area">
-        <form>
-          <input type="text" id="todo-in" placeholder="To-do..." />
-          <button type="button" id="btn-add">Add To-Do</button>
-        </form>
-      </section>
+
+    <div class="input-container">
+      <!-- Area to input a new to-do -->
+      <form id="input-area">
+        <input
+          type="text"
+          id="todo-in"
+          autocomplete="off"
+          placeholder="Add your to-do..."
+        />
+        <!-- Submit button -->
+        <input type="submit" value="+" class="btn" id="add" />
+      </form>
+
       <section id="todo-area">
         <!-- jQuery will append data here -->
       </section>
-    </main>
+    </div>
   </body>
 </html>

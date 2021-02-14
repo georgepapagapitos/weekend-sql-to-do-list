@@ -78,23 +78,41 @@ function postTodo(event) {
 
 // Function that is called when the user clicks a red X / delete button
 function deleteTodo() {
-  // Grab the data-id of the clicked button and assign it to todoId
-  let todoId = $(this).data('id');
-  console.log('todoId', todoId);
-  // Set up DELETE route
-  $.ajax({
-    method: 'DELETE',
-    url: `/todoList/${todoId}`,
-  })
-    .then(function (response) {
-      console.log('delete complete');
-      // Call getTodoList to update the DOM
-      getTodoList();
-    })
-    // Handle error
-    .catch(function (error) {
-      console.log('DELETE error', error);
-    });
+  // Use an alert to verify the user wants to delete the to-do
+  swal({
+    title: 'Are you sure?',
+    text: 'Once deleted, you will not be able to recover this to-do item!',
+    icon: 'warning',
+    buttons: true,
+    dangerMode: true,
+    // Handle success
+  }).then((willDelete) => {
+    if (willDelete) {
+      swal('Your to-do has been deleted!', {
+        icon: 'success',
+      });
+      // Grab the data-id of the clicked button and assign it to todoId
+      let todoId = $(this).data('id');
+      console.log('todoId', todoId);
+      // Set up DELETE route
+      $.ajax({
+        method: 'DELETE',
+        url: `/todoList/${todoId}`,
+      })
+        .then(function (response) {
+          console.log('delete complete');
+          // Call getTodoList to update the DOM
+          getTodoList();
+        })
+        // Handle error
+        .catch(function (error) {
+          console.log('DELETE error', error);
+        });
+      // If user decides not to delete
+    } else {
+      swal('Your to-do is safe!');
+    }
+  });
 }
 
 // Function that is called when a user clicks a to-do item's checkbox

@@ -1,9 +1,7 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Weekend To-Do List
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Duration: Weekend Challenge
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+The goal was to create a to-do list that was able to accept user input and store the to-do items on a local database.

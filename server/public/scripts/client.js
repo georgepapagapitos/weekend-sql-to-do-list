@@ -79,16 +79,18 @@ function postTodo(event) {
 // Function that is called when the user clicks a red X / delete button
 function deleteTodo() {
   // Use an alert to verify the user wants to delete the to-do
+  swal('Are you sure you want to do this?', {
+    buttons: ['Oh noez!', 'Aww yiss!'],
+  });
+
   swal({
     title: 'Are you sure?',
-    text: 'Once deleted, you will not be able to recover this to-do item!',
-    icon: 'warning',
-    buttons: true,
-    dangerMode: true,
+    text: 'You will not be able to recover this to-do item...',
+    buttons: ['Nevermind', 'Yes'],
     // Handle success
   }).then((willDelete) => {
     if (willDelete) {
-      swal('Your to-do has been deleted!', {
+      swal('Your to-do has been completed!', {
         icon: 'success',
       });
       // Grab the data-id of the clicked button and assign it to todoId

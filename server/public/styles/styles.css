@@ -22,11 +22,13 @@ header {
 .input-container {
   margin: auto;
   width: 50%;
-  padding: 10px;
 }
 
 #todo-in {
   text-align: center;
+  color: #00204a;
+  border-bottom: 1px solid skyblue;
+  background-color: #e4e9fd;
 }
 
 .btn {
@@ -37,8 +39,6 @@ header {
   background-color: skyblue;
   color: #e4e9fd;
   font-size: 15px;
-  padding-bottom: 6px;
-  border-width: 0;
 }
 
 form {
@@ -82,7 +82,6 @@ input[type='checkbox'] {
 
 label {
   margin: 0;
-  padding: 20px;
   font-size: 20px;
   font-weight: 200;
   color: #00204a;
@@ -106,13 +105,12 @@ input[type='checkbox']:checked + label.strikethrough {
   border-color: transparent;
   color: #e4e9fd;
   font-size: 15px;
-  padding-bottom: 6px;
   border-width: 0;
 }
 
 ::placeholder {
   color: skyblue;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .hidden {

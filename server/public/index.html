@@ -13,21 +13,23 @@
     <header>
       <h1 class="title">Weekend To-Do List</h1>
     </header>
-    <div class="container">
-      <div class="input-container">
-        <form id="input-area">
-          <input
-            type="text"
-            id="todo-in"
-            autocomplete="off"
-            placeholder="Add your to-do..."
-          />
-          <input type="submit" value="+" class="btn" id="add" />
-        </form>
-        <section id="todo-area">
-          <!-- jQuery will append data here -->
-        </section>
-      </div>
+
+    <div class="input-container">
+      <!-- Area to input a new to-do -->
+      <form id="input-area">
+        <input
+          type="text"
+          id="todo-in"
+          autocomplete="off"
+          placeholder="Add your to-do..."
+        />
+        <!-- Submit button -->
+        <input type="submit" value="+" class="btn" id="add" />
+      </form>
+
+      <section id="todo-area">
+        <!-- jQuery will append data here -->
+      </section>
     </div>
   </body>
 </html>
